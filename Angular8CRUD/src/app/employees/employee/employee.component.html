@@ -1,3 +1,36 @@
-<p>
-  employee works!
-</p>
+<form class="emp-form" #employeeForm="ngForm" autocomplete="off" (submit)="onSubmit(employeeForm)">
+  <input type="hidden" name="EmployeeID" #EmployeeID="ngModel" [(ngModel)]="employeeService.selectedEmployee.EmployeeID">
+  
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input class="form-control" name="FirstName" #FirstName="ngModel" [(ngModel)]="employeeService.selectedEmployee.FirstName" required placeholder="First Name">
+      <div class="validation-error" *ngIf="FirstName.invalid&&FirstName.touched"> This field is required</div>
+    </div>
+    <div class="form-group col-md-6">
+      <input class="form-control" name="LastName" #LastName="ngModel" [(ngModel)]="employeeService.selectedEmployee.LastName" required placeholder="Last Name">
+      <div class="validation-error" *ngIf="LastName.invalid&&LastName.touched"> This field is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input class="form-control" name="Position" #Position="ngModel" [(ngModel)]="employeeService.selectedEmployee.Position" placeholder="Position">
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input class="form-control" name="EmpCode" #EmpCode="ngModel" [(ngModel)]="employeeService.selectedEmployee.EmpCode" placeholder="Emp. Code">
+    </div>
+    <div class="form-group col-md-6">
+      <input class="form-control" name="Office" #Office="ngModel" [(ngModel)]="employeeService.selectedEmployee.Office" placeholder="Office">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <button type="submit" class="btn btn-lg btn-block btn-outline-info" [disabled]="!employeeForm.valid"><i class="fas fa-save"></i> Submit</button>
+    </div>
+    <div class="form-group col-md-4">
+      <button type="button" class="btn btn-lg btn-block btn-outline-secondary" (click)="resetForm(employeeForm)"><i class="fa fa-redo"></i> Reset</button>
+    </div>
+  </div>
+</form>
